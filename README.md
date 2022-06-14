@@ -3,6 +3,7 @@
 Simple, step-by-step instructions for setting up SAM-ResNet on Windows 10.
 
 Author: Brenden Eum (Apr 2020)
+
 Updated by Katherine Chang (Jun 2022)
 
 ## Introduction 
