@@ -3,6 +3,7 @@
 Simple, step-by-step instructions for setting up SAM-ResNet on Windows 10.
 
 Author: Brenden Eum (Apr 2020)
+Updated by Katherine Chang (Jun 2022)
 
 ## Introduction 
 
@@ -93,23 +94,25 @@ version = 1
 
 Go to [this link](https://jmeubank.github.io/tdm-gcc/) and install any tdm-gcc to *toolkit folder*. This is a GCC compiler for Windows.
 
-### 8 Install Microsoft Visual Studio 2015
+### 8 Install Microsoft Visual Studio 2022
 
-Go to [this link](https://visualstudio.microsoft.com/vs/older-downloads/) and download Microsoft Visual Studio 2015 to *toolkit folder*. I haven't tested any other versions, so for now I'll just say you need 2015 (though I'd imagine you can use any year). 
+Go to [this link](https://visualstudio.microsoft.com/downloads/) and download Microsoft Visual Studio Community 2022 to *toolkit folder*.
 
 When installing:
-* Choose installation location to be *toolkit folder*
-* Select Custom Installation
-* For select features, you don't need much. Just check:
-  * Programming Languages\Visual C++\Common Tools for Visual C++ 2015
-  * Windows and Web Development\Universal Windows App Development Tools\Tools (1.4.1) and Windows SDK...
-  * Windows and Web Development\Universal Windows App Development Tools\Windows 10 SDK (10.0.10240)
-Finally, just click install. This will take a bit of time.
+* Choose installation location to be *toolkit folder*. For example,
+```
+D:\toolkits.win\Microsoft Visual Studio\2022\Community
+```
+* In Workloads components, check:
+  * Desktop development with C++ 
+  * Universal Windows Platform development. On the side bar, under Optional check C++ (v141) Universal Windows Platform tools
+
+Finally, click install. This will take a bit of time.
 
 When that is done, add the address below to your PATH (see step 3 above if you need an example of how to do this):
 
 ```
-D:\toolkit.win\Microsoft Visual Studio 14.0\VC\bin\
+D:\toolkits.win\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.16.27023\bin
 ```
 
 We do this to have cl.exe in the PATH, so make sure that cl.exe is in the bin folder.
@@ -150,7 +153,7 @@ When it asks you if you would like to proceed, enter "y".
 pip install h5py
 ```
 ```
-pip install opencv-python
+pip install opencv-python==4.2.0.32
 ```
 ```
 pip install keras==1.1.0
@@ -170,12 +173,10 @@ Note: For Theano, I believe you can use other versions like 0.10b.0
 Minimize Anaconda prompt for now. Go to your local user directory, e.g.
 
 ```
-C:\users\*your username*\
+C:\Users\*your username*\
 ```
 
-Look for a folder titled ".keras". Inside, there is a "keras.json" file. Open that with a text editor.
-
-Replace the text with:
+Create a folder titled ".keras". Open a text editor, and enter in a text document
 
 ```
 {
@@ -186,7 +187,7 @@ Replace the text with:
 }
 ```
 
-Save and close that.
+Save the file as "keras.json" inside the ".keras" folder, and close that.
 
 Next, go back to your local user directory again. This time, create a new text file titled ".theanorc.txt". Make sure it has the period in front! Copy and paste this text inside:
 
@@ -214,12 +215,12 @@ Take all the images you want to generate a salience map for, and put them in one
 
 ### 2 Navigate to SAM folder in terminal
 
-In the terminal, navigate to *sam folder*. You can use the “cd” command (“change directory”) to get there. 
+In the anaconda terminal, navigate to *sam folder*. You can use the “cd” command (“change directory”) to get there. 
 
-For instance, if *sam folder* is D:\toolkit.win\sam\, then simply type:
+For instance, if *sam folder* is D:\toolkits.win\sam\, then simply type:
 
 ```
-cd D:\toolkit.win\sam\
+cd C:\toolkits.win\sam\
 ```
 
 Note that if you are currently in a different drive on the terminal from the drive that *sam folder* is located on, you'll need to change drives before using "cd". For example, suppose the terminal tells me I'm currently in "C:\users\Brenden\" and my *sam folder* is in "D:\toolkits\". Then I'll need to enter these commands one after the other:
@@ -227,7 +228,7 @@ Note that if you are currently in a different drive on the terminal from the dri
 D:
 ```
 ```
-cd toolkit.win\sam\
+cd toolkits.win\sam\
 ```
 
 ### 3 Use SAM-ResNet
